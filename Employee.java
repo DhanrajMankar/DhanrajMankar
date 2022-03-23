@@ -1,13 +1,46 @@
-package Dhanarjanudip01;
-class Employee
-{
-float salary=20000;
-}
-class Developer extends Employee{
-int bonus=5000;
-public static void main(String args[]){
-Developer d=new Developer();
-System.out.println("Salary of developer is:"+d.salary);
-System.out.println("Bonus of developer is:"+d.bonus);
-}
+package JDBCmaven.onetoone;
+import javax.persistence.*;
+
+@Table(name="emp1")
+@Entity
+public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@PrimaryKeyJoinColumn
+	
+	private int id;
+	private String name;
+	
+	@OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
+	
+	private Address address;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
+	
+
 }
